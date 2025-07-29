@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+}
+
+/* Глобальные стили */
+body {
+  @apply bg-gray-50 font-sans text-gray-900 antialiased;
+  background-image: radial-gradient(
+      at 80% 0%,
+      hsla(189, 100%, 95%, 0.5) 0,
+      transparent 50%
+    ),
+    radial-gradient(at 0% 50%, hsla(355, 100%, 95%, 0.2) 0, transparent 50%);
+}
+
+/* Кастомные классы */
+.card {
+  @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-sm overflow-hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.card-hover {
+  @apply hover:shadow-md hover:border-indigo-200 hover:bg-white;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1);
+}
+
+.btn-primary:hover {
+  @apply shadow-lg transform -translate-y-0.5;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
