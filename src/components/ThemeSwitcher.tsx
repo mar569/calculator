@@ -33,7 +33,7 @@ const ThemeSwitcher: React.FC = () => {
             aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
         >
             <div className={`relative w-8 h-8 transition-all duration-500 ${isAnimating ? 'scale-125' : 'scale-100'}`}>
-                {/* Солнце */}
+
                 <div className={`
           absolute transition-all duration-500
           ${theme === 'dark' ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}

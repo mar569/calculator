@@ -1,17 +1,12 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  type PayloadAction,
-} from '@reduxjs/toolkit';
-import { db } from '../firebase'; // Импортируйте вашу конфигурацию Firebase
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { db } from '../firebase';
 import {
   collection,
   addDoc,
   deleteDoc,
-  doc,
   getDocs,
+  doc,
 } from 'firebase/firestore';
-
 export interface Transaction {
   id: string;
   amount: number;
@@ -19,7 +14,6 @@ export interface Transaction {
   category: string;
   date: string;
 }
-
 interface FinanceState {
   transactions: Transaction[];
 }
@@ -28,8 +22,7 @@ const initialState: FinanceState = {
   transactions: [],
 };
 
-// Асинхронное действие для получения транзакций
-export const fetchTransactions = createAsyncThunk<Transaction[]>(
+export const fetchTransactions = createAsyncThunk(
   'finance/fetchTransactions',
   async () => {
     const querySnapshot = await getDocs(collection(db, 'transactions'));
@@ -40,19 +33,17 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
   }
 );
 
-// Асинхронное действие для добавления транзакции
-export const addTransaction = createAsyncThunk<
-  Transaction,
-  Omit<Transaction, 'id'>
->('finance/addTransaction', async (transaction) => {
-  const docRef = await addDoc(collection(db, 'transactions'), transaction);
-  return { id: docRef.id, ...transaction };
-});
+export const addTransaction = createAsyncThunk(
+  'finance/addTransaction',
+  async (transaction: Omit<Transaction, 'id'>) => {
+    const docRef = await addDoc(collection(db, 'transactions'), transaction);
+    return { id: docRef.id, ...transaction };
+  }
+);
 
-// Асинхронное действие для удаления транзакции
-export const deleteTransaction = createAsyncThunk<string, string>(
+export const deleteTransaction = createAsyncThunk(
   'finance/deleteTransaction',
-  async (id) => {
+  async (id: string) => {
     await deleteDoc(doc(db, 'transactions', id));
     return id;
   }
@@ -62,7 +53,7 @@ const financeSlice = createSlice({
   name: 'finance',
   initialState,
   reducers: {
-    editTransaction: (state, action: PayloadAction<Transaction>) => {
+    editTransaction: (state, action) => {
       const index = state.transactions.findIndex(
         (t) => t.id === action.payload.id
       );

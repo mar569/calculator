@@ -1,4 +1,3 @@
-
 import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
@@ -18,12 +17,14 @@ const ReportsPage = memo(() => {
     const [startDate, setStartDate] = useState<Date | null>(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000));
     const [endDate, setEndDate] = useState<Date | null>(new Date());
 
-    const filteredTransactions = transactions.filter(transaction => {
-        const transactionDate = new Date(transaction.date);
-        return transactionDate >= (startDate || new Date(0)) && transactionDate <= (endDate || new Date());
-    });
+    const getFilteredTransactions = () => {
+        return transactions.filter(transaction => {
+            const transactionDate = new Date(transaction.date);
+            return transactionDate >= (startDate || new Date(0)) && transactionDate <= (endDate || new Date());
+        });
+    };
 
-    const generateReportData = () => {
+    const createReportData = () => {
         const categories = ['revenue', 'expense', 'tobacco', 'rent'];
         const labels = Object.values(CATEGORY_LABELS);
 
@@ -32,7 +33,7 @@ const ReportsPage = memo(() => {
             datasets: [{
                 label: 'Сумма',
                 data: categories.map(category =>
-                    filteredTransactions
+                    getFilteredTransactions()
                         .filter(t => t.category === category)
                         .reduce((sum, t) => sum + t.amount, 0)
                 ),
@@ -40,6 +41,10 @@ const ReportsPage = memo(() => {
             }]
         };
     };
+
+    const totalIncome = getFilteredTransactions()
+        .filter(t => t.category === 'revenue')
+        .reduce((sum, t) => sum + t.amount, 0);
 
     return (
         <motion.div className={`page-container space-y-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -78,13 +83,13 @@ const ReportsPage = memo(() => {
                 <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
                     <h2 className="text-xl font-semibold mb-4">Финансовый отчет</h2>
                     <Bar
-                        data={generateReportData()}
+                        data={createReportData()}
                         options={{ responsive: true }}
                     />
                 </div>
 
                 <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
-                    <h2 className="text-xl font-semibold mb-4">Детализация</h2>
+                    <h2 className="text-xl font-semibold mb-4">Детали</h2>
                     <div className="overflow-x-auto">
                         <table className="table">
                             <thead>
@@ -96,7 +101,7 @@ const ReportsPage = memo(() => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredTransactions.map((transaction) => (
+                                {getFilteredTransactions().map((transaction) => (
                                     <tr key={transaction.id}>
                                         <td className="px-4 py-2">{new Date(transaction.date).toLocaleDateString()}</td>
                                         <td className="px-4 py-2">{transaction.description}</td>
@@ -120,7 +125,10 @@ const ReportsPage = memo(() => {
                         </table>
                     </div>
                 </div>
-
+            </div>
+            <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
+                <h2 className="text-xl font-semibold mb-4">Общий доход за выбранный период:</h2>
+                <p className="text-lg font-bold text-green-600">{totalIncome.toLocaleString()} ₽</p>
             </div>
         </motion.div>
     );

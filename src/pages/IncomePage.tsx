@@ -9,20 +9,27 @@ import { motion } from 'framer-motion';
 const IncomePage = memo(() => {
     const transactions = useSelector((state: RootState) => state.finance.transactions);
 
-    const revenue = transactions.filter(t => t.category === 'revenue')
+    // Общий доход
+    const totalIncome = transactions.filter(t => t.category === 'revenue')
         .reduce((sum, t) => sum + t.amount, 0);
 
-    const rent = 35000;
-    const rentDeduction = revenue * 0.2;
-    const tobaccoExpenses = revenue * 0.2;
-    const otherExpenses = revenue * 0.08;
-    const totalExpenses = rent + rentDeduction + tobaccoExpenses + otherExpenses;
-    const netIncome = revenue - totalExpenses;
+    const rentAmount = 35000;
+    const rentCost = totalIncome * 0.2;
+    const tobaccoCost = totalIncome * 0.2;
+    const otherCost = totalIncome * 0.08;
 
-    const remainingToSave = rent - rentDeduction;
-    const totalSpecificExpenses = rentDeduction + tobaccoExpenses + otherExpenses;
+    // Общие расходы
+    const totalCosts = rentAmount + rentCost + tobaccoCost + otherCost;
 
-    const cushion = revenue - totalSpecificExpenses;
+    // Чистая прибыль
+    const netProfit = totalIncome - totalCosts;
+
+    // Остаток для накопления
+    const amountToSave = rentAmount - rentCost;
+    const totalPlannedExpenses = rentCost + tobaccoCost + otherCost;
+
+    // Подушка 
+    const savingsCushion = totalIncome - totalPlannedExpenses;
 
     return (
         <motion.div className="space-y-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -41,33 +48,33 @@ const IncomePage = memo(() => {
                     <div className="flex items-center mb-2 pt-4">
                         <FaMoneyBillWave className="text-green-600 mr-2" />
                         <span className="font-medium">Доходы:</span>
-                        <span className="ml-auto text-lg font-bold text-green-600">{revenue.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-green-600">{totalIncome.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex items-center mb-2">
                         <FaHome className="text-red-600 mr-2" />
                         <span className="font-medium">Аренда:</span>
-                        <span className="ml-auto text-lg font-bold text-red-600">{rent} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-red-600">{rentAmount} ₽</span>
                     </div>
                     <div className="flex items-center mb-2">
                         <FaChartLine className="text-orange-600 mr-2" />
                         <span className="font-medium">Расходы на аренду (20%):</span>
-                        <span className="ml-auto text-lg font-bold text-orange-600">{rentDeduction.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-orange-600">{rentCost.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex items-center mb-2">
                         <span className="font-medium">Расходы на табак (20%):</span>
-                        <span className="ml-auto text-lg font-bold text-orange-600">{tobaccoExpenses.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-orange-600">{tobaccoCost.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex items-center mb-2">
                         <span className="font-medium">Прочие расходы (5%):</span>
-                        <span className="ml-auto text-lg font-bold text-orange-600">{otherExpenses.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-orange-600">{otherCost.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex items-center mb-2">
                         <span className="font-medium">Общие расходы:</span>
-                        <span className="ml-auto text-lg font-bold text-red-600">{totalExpenses.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg font-bold text-red-600">{totalCosts.toLocaleString()} ₽</span>
                     </div>
-                    <div className={`flex items-center font-bold ${netIncome >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <div className={`flex items-center font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                         <span>Чистая прибыль:</span>
-                        <span className="ml-auto text-lg">{netIncome.toLocaleString()} ₽</span>
+                        <span className="ml-auto text-lg">{netProfit.toLocaleString()} ₽</span>
                     </div>
                 </div>
             </div>
@@ -79,31 +86,31 @@ const IncomePage = memo(() => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="flex flex-col pt-4">
                         <span className="font-medium">Сумма на аренду:</span>
-                        <span className="text-[16px] font-bold text-red-600">{rentDeduction.toLocaleString()} ₽</span>
+                        <span className="text-[16px] font-bold text-red-600">{rentCost.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="font-medium">Сумма на табаки:</span>
-                        <span className="text-[16px] font-bold text-orange-600">{tobaccoExpenses.toLocaleString()} ₽</span>
+                        <span className="text-[16px] font-bold text-orange-600">{tobaccoCost.toLocaleString()} ₽</span>
                     </div>
                     <div className="flex flex-col">
                         <span className="font-medium">Сумма на расходы:</span>
-                        <span className="text-[16px] font-bold text-orange-600">{otherExpenses.toLocaleString()} ₽</span>
+                        <span className="text-[16px] font-bold text-orange-600">{otherCost.toLocaleString()} ₽</span>
                     </div>
                 </div>
                 <div className="flex items-center mb-2 mt-4">
                     <span className="font-medium">Отложить:</span>
-                    <span className="ml-auto text-[16px] font-bold text-red-500">{totalSpecificExpenses.toLocaleString()} ₽</span>
+                    <span className="ml-auto text-[16px] font-bold text-red-500">{totalPlannedExpenses.toLocaleString()} ₽</span>
                 </div>
                 <div className="flex items-center mb-2 border-t border-dashed border-gray-300 pt-4">
                     <span className="font-medium">Подушка:</span>
-                    <span className={`ml-auto text-[16px] font-bold ${cushion >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {cushion.toLocaleString()} ₽
+                    <span className={`ml-auto text-[16px] font-bold ${savingsCushion >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                        {savingsCushion.toLocaleString()} ₽
                     </span>
                 </div>
                 <div className="flex items-center mb-2 border-t border-dashed border-gray-300 pt-4">
                     <span className="font-medium">Осталось накопить на аренду:</span>
-                    <span className={`ml-auto text-[16px] font-bold ${remainingToSave <= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {remainingToSave.toLocaleString()} ₽
+                    <span className={`ml-auto text-[16px] font-bold ${amountToSave <= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                        {amountToSave.toLocaleString()} ₽
                     </span>
                 </div>
             </div>
