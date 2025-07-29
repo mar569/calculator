@@ -79,7 +79,7 @@ export default function Navbar() {
                                     to={link.path}
                                     className={`font-medium px-3 py-2 rounded-md transition-all duration-300
                                         ${pathname === link.path ?
-                                            'text-white font-bold shadow-sm' :
+                                            (theme === 'light' ? 'text-black font-bold' : 'text-white font-bold') :
                                             'text-gray-700 hover:text-white '}
                                     `}
                                     style={pathname === link.path ? activeLinkStyle : {}}

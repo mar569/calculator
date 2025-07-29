@@ -43,7 +43,7 @@ const ReportsPage = memo(() => {
 
     return (
         <div className={`page-container space-y-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
-            <h1 className="text-2xl font-bold">Отчеты</h1>
+            <h1 className="text-2xl text-gray-300">Отчеты</h1>
 
             <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
                 <h2 className="text-xl font-semibold mb-4">Выберите период</h2>

@@ -35,7 +35,7 @@ const FinancePage = memo(() => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-between items-center"
             >
-                <h1 className="text-2xl font-bold">Управление финансами</h1>
+                <h1 className="text-2xl text-gray-300">Управление финансами</h1>
                 {newTransactionAdded && (
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}

@@ -27,9 +27,9 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions, onEditT
     }, [dispatch]);
 
     return (
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div className=" overflow-hidden bg-white p-2 rounded-lg shadow">
             <div className="p-4 border-b">
-                <h2 className="text-xl font-semibold">История транзакций</h2>
+                <h2 className="text-xl font-semibold ">История транзакций</h2>
             </div>
 
             {transactions.length === 0 ? (

@@ -30,7 +30,6 @@ export default function App() {
           <Route path="/finance" element={<FinancePage />} />
           <Route path="/income" element={<IncomePage />} />
           <Route path="/reports" element={<ReportsPage />} />
-
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </Page>
