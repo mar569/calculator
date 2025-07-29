@@ -4,6 +4,7 @@ import StatisticsChart from '../components/StatisticsChart';
 import TransactionList from '../components/TransactionList';
 import type { RootState } from '../store/store';
 import { FaMoneyBillWave, FaHome, FaChartLine } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const IncomePage = memo(() => {
     const transactions = useSelector((state: RootState) => state.finance.transactions);
@@ -14,16 +15,18 @@ const IncomePage = memo(() => {
     const rent = 35000;
     const rentDeduction = revenue * 0.2;
     const tobaccoExpenses = revenue * 0.2;
-    const otherExpenses = revenue * 0.05;
+    const otherExpenses = revenue * 0.08;
     const totalExpenses = rent + rentDeduction + tobaccoExpenses + otherExpenses;
     const netIncome = revenue - totalExpenses;
 
     const remainingToSave = rent - rentDeduction;
     const totalSpecificExpenses = rentDeduction + tobaccoExpenses + otherExpenses;
 
+    const cushion = revenue - totalSpecificExpenses;
+
     return (
-        <div className="space-y-6">
-            <h1 className="text-2xl text-gray-300">Управление доходами</h1>
+        <motion.div className="space-y-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <h1 className="text-2xl text-gray-500">Управление доходами</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow">
@@ -88,10 +91,16 @@ const IncomePage = memo(() => {
                     </div>
                 </div>
                 <div className="flex items-center mb-2 mt-4">
-                    <span className="font-medium">Общая сумма отложенных средств:</span>
+                    <span className="font-medium">Отложить:</span>
                     <span className="ml-auto text-[16px] font-bold text-red-500">{totalSpecificExpenses.toLocaleString()} ₽</span>
                 </div>
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-2 border-t border-dashed border-gray-300 pt-4">
+                    <span className="font-medium">Подушка:</span>
+                    <span className={`ml-auto text-[16px] font-bold ${cushion >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                        {cushion.toLocaleString()} ₽
+                    </span>
+                </div>
+                <div className="flex items-center mb-2 border-t border-dashed border-gray-300 pt-4">
                     <span className="font-medium">Осталось накопить на аренду:</span>
                     <span className={`ml-auto text-[16px] font-bold ${remainingToSave <= 0 ? 'text-green-500' : 'text-red-500'}`}>
                         {remainingToSave.toLocaleString()} ₽
@@ -103,7 +112,7 @@ const IncomePage = memo(() => {
                 transactions={transactions}
                 onEditTransaction={() => { }}
             />
-        </div>
+        </motion.div>
     );
 });
 

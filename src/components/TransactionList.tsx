@@ -71,7 +71,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactions, onEditT
                                 </button>
                                 <button
                                     onClick={() => handleDelete(transaction.id)}
-                                    className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                                    className=" text-red-500 hover:bg-red-50 rounded-full transition-colors"
                                     aria-label="Удалить"
                                     disabled={isDeleting === transaction.id}
                                 >

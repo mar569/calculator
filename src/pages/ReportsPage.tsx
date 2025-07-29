@@ -1,3 +1,4 @@
+
 import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
@@ -5,10 +6,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import type { RootState } from '../store/store';
-;
 import { CATEGORY_LABELS, THEME_COLORS } from '../constants/themeConstants';
 import { useTheme } from '../providers/useTheme';
-
+import { motion } from 'framer-motion';
 
 Chart.register(...registerables);
 
@@ -42,8 +42,8 @@ const ReportsPage = memo(() => {
     };
 
     return (
-        <div className={`page-container space-y-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
-            <h1 className="text-2xl text-gray-300">Отчеты</h1>
+        <motion.div className={`page-container space-y-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <h1 className="text-2xl text-gray-500">Отчеты</h1>
 
             <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
                 <h2 className="text-xl font-semibold mb-4">Выберите период</h2>
@@ -122,7 +122,7 @@ const ReportsPage = memo(() => {
                 </div>
 
             </div>
-        </div>
+        </motion.div>
     );
 });
 
