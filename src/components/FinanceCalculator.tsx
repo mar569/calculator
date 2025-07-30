@@ -59,7 +59,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
             dispatch(editTransaction({ ...transaction, id: transactionToEdit.id }));
             toast.success('Транзакция обновлена');
             onCancelEdit();
-            reset(defaultValues); // Сброс формы после успешного редактирования
+            reset(defaultValues);
         } else {
             await dispatch(addTransaction(transaction));
             toast.success('Транзакция добавлена');
@@ -69,7 +69,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
     };
 
     const handleCancel = () => {
-        reset(defaultValues); // Полный сброс к исходным значениям
+        reset(defaultValues);
         onCancelEdit();
     };
 
@@ -80,7 +80,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* Поле суммы */}
+
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">Сумма</label>
                     <input
@@ -102,7 +102,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                     )}
                 </div>
 
-                {/* Поле описания */}
+
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Описание
@@ -121,7 +121,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                     )}
                 </div>
 
-                {/* Выбор категории */}
+
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                         Категория
@@ -135,7 +135,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                     </select>
                 </div>
 
-                {/* Кнопки действий */}
+
                 <div className="flex space-x-4">
                     <button
                         type="submit"

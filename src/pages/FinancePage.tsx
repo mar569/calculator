@@ -1,14 +1,14 @@
 import { memo, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks'; // Импортируйте типизированные хуки
-import { fetchTransactions } from '../store/financeSlice'; // Импортируйте асинхронное действие
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchTransactions } from '../store/financeSlice';
 import TransactionList from '../components/TransactionList';
 import FinanceCalculator from '../components/FinanceCalculator';
 import type { Transaction } from '../store/financeSlice';
 import { motion } from 'framer-motion';
 
 const FinancePage = memo(() => {
-    const dispatch = useAppDispatch(); // Используйте типизированный dispatch
-    const transactions = useAppSelector((state) => state.finance.transactions); // Используйте типизированный selector
+    const dispatch = useAppDispatch();
+    const transactions = useAppSelector((state) => state.finance.transactions);
     const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
     const [newTransactionAdded, setNewTransactionAdded] = useState(false);
 

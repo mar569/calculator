@@ -41,7 +41,7 @@ const SettingsPage = memo(() => {
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <h1 className="text-2xl text-gray-500 mb-4">Заметки</h1>
+            <h1 className="text-2xl text-gray-500 mb-6">Заметки</h1>
             <div className="bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-semibold mb-4">Добавь напоминания</h2>
                 <form onSubmit={handleAddReminder} className="flex items-center">
