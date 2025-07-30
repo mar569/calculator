@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
@@ -56,7 +55,7 @@ export default function Login() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="neumorphism neumorphism-input"
+                            className="neumorphism neumorphism-input w-full" // Убедитесь, что ширина 100%
                         />
                     </div>
                     <div>
@@ -66,7 +65,7 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className=" rounded neumorphism neumorphism-input"
+                            className="neumorphism neumorphism-input w-full" // Убедитесь, что ширина 100%
                         />
                     </div>
                     <div className="flex items-center">

@@ -71,11 +71,13 @@ body {
   justify-content: center;
   align-items: center;
   padding: 30px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   background: #eaecf0;
   border-radius: 20px;
   box-shadow: 6px 6px 20px #a3b1c6, -6px -6px 20px #ffffff;
 }
+
 .neumorphism-button {
   background: #eaecf0;
   border-radius: 20px;
@@ -84,8 +86,9 @@ body {
   padding: 10px 20px;
   border: 1px solid #a3b1c6;
   cursor: pointer;
-  transition: all 0.8s ease;
+  transition: all 0.3s ease;
 }
+
 .neumorphism-button:hover {
   box-shadow: inset 3px 3px 20px #a3b1c6, inset -3px -3px 20px #e9e1e1;
 }
@@ -98,8 +101,9 @@ body {
   padding: 10px 20px;
   border: 1px solid #a3b1c6;
   cursor: pointer;
-  transition: all 0.8s ease;
+  transition: all 0.3s ease;
 }
+
 .neumorphism-input:hover {
   box-shadow: inset 10px 10px 20px #a3b1c6, inset -3px -3px 20px #e9e1e1;
 }
