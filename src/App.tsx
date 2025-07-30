@@ -1,6 +1,4 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import DashboardPage from './pages/DashboardPage';
 import FinancePage from './pages/FinancePage';
 import ReportsPage from './pages/ReportsPage';
@@ -13,28 +11,26 @@ import Page from './components/Page';
 import { AuthProvider } from './context/AuthProvider';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
-import RoutePage from './components/auth/RoutePage';
+import ProfilePage from './components/auth/ProfilePage';
 import { useAuth } from './context/AuthContext';
 
 function AppRoutes() {
   const { currentUser, loading } = useAuth();
 
   if (loading) {
-    return <div>Загрузка...</div>; // Можно добавить индикатор загрузки
+    return <div>Загрузка...</div>; // Индикатор загрузки
   }
 
   return (
     <Routes>
-      {/* Если пользователь не аутентифицирован, он увидит страницу регистрации */}
       <Route path="/register" element={<Registration />} />
       <Route path="/login" element={<Login />} />
-
-      {/* Если пользователь аутентифицирован, перенаправляем на главную страницу */}
-      <Route path="/" element={currentUser ? <RoutePage><DashboardPage /></RoutePage> : <Navigate to="/register" replace />} />
-      <Route path="/finance" element={currentUser ? <RoutePage><FinancePage /></RoutePage> : <Navigate to="/register" replace />} />
-      <Route path="/income" element={currentUser ? <RoutePage><IncomePage /></RoutePage> : <Navigate to="/register" replace />} />
-      <Route path="/reports" element={currentUser ? <RoutePage><ReportsPage /></RoutePage> : <Navigate to="/register" replace />} />
-      <Route path="/settings" element={currentUser ? <RoutePage><SettingsPage /></RoutePage> : <Navigate to="/register" replace />} />
+      <Route path="/profile" element={currentUser ? <ProfilePage /> : <Navigate to="/register" replace />} />
+      <Route path="/" element={currentUser ? <DashboardPage /> : <Navigate to="/register" replace />} />
+      <Route path="/finance" element={currentUser ? <FinancePage /> : <Navigate to="/register" replace />} />
+      <Route path="/income" element={currentUser ? <IncomePage /> : <Navigate to="/register" replace />} />
+      <Route path="/reports" element={currentUser ? <ReportsPage /> : <Navigate to="/register" replace />} />
+      <Route path="/settings" element={currentUser ? <SettingsPage /> : <Navigate to="/register" replace />} />
     </Routes>
   );
 }
