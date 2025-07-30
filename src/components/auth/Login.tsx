@@ -23,12 +23,14 @@ export default function Login() {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            toast.success('Вход выполнен успешно');
-
             if (email === 'efimin01@icloud.com') {
-                toast.info('Привет, Кирилл!');
+                toast.info('Привет, Кирилл!',
+                    <span>👋</span>
+                );
             } else if (email === 'alinkaovsefimina@bk.ru') {
-                toast.info('Привет, Аиночка!');
+                toast.info('Привет, Аиночка!',
+                    <span>👋</span>
+                );
             }
 
             if (rememberMe) {
@@ -55,7 +57,7 @@ export default function Login() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="neumorphism neumorphism-input w-full" // Убедитесь, что ширина 100%
+                            className="neumorphism neumorphism-input w-full"
                         />
                     </div>
                     <div>
