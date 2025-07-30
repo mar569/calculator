@@ -9,14 +9,13 @@ export default function EmailVerification() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Проверяем, подтвержден ли адрес электронной почты
+
                 if (user.emailVerified) {
-                    // Если адрес электронной почты подтвержден, перенаправляем на главную страницу
-                    navigate('/');
+
+                    navigate('/login');
                 }
             }
         });
-
 
         return () => unsubscribe();
     }, [navigate]);
@@ -25,7 +24,7 @@ export default function EmailVerification() {
         <div className="max-w-md mx-auto p-4">
             <h2 className="text-2xl font-bold mb-6 text-center">Проверка электронной почты</h2>
             <p>Пожалуйста, проверьте свою почту и подтвердите адрес электронной почты.</p>
-            <p>После подтверждения вы будете автоматически перенаправлены на главную страницу.</p>
+            <p>После подтверждения вы будете автоматически перенаправлены на страницу входа.</p>
         </div>
     );
 }

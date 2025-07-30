@@ -1,4 +1,3 @@
-// src/components/Login.tsx
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +20,8 @@ export default function Login() {
             }
             toast.success('Вход выполнен успешно');
             navigate('/');
-        } catch {
-            toast.error('Ошибка входа');
-            ;
+        } catch (error) {
+            toast.error('Ошибка входа: ' + (error as Error).message);
         }
     };
 

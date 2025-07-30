@@ -17,6 +17,7 @@ import { useAuth } from './context/AuthContext';
 function AppRoutes() {
   const { currentUser, loading } = useAuth();
 
+  // Показать индикатор загрузки, пока данные о пользователе загружаются
   if (loading) {
     return <div>Загрузка...</div>;
   }
@@ -25,7 +26,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/register" element={<Registration />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/email-verification" element={<EmailVerification />} /> {/* Новый маршрут */}
+      <Route path="/email-verification" element={<EmailVerification />} />
       <Route path="/" element={currentUser ? <DashboardPage /> : <Navigate to="/register" replace />} />
       <Route path="/finance" element={currentUser ? <FinancePage /> : <Navigate to="/register" replace />} />
       <Route path="/income" element={currentUser ? <IncomePage /> : <Navigate to="/register" replace />} />
