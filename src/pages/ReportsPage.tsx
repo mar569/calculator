@@ -47,7 +47,7 @@ const ReportsPage = memo(() => {
         .reduce((sum, t) => sum + t.amount, 0);
 
     return (
-        <motion.div className={`page-container space-y-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className={`page-container space-y-6 mb-4 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <h1 className="text-2xl text-gray-500">Отчеты</h1>
 
             <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>

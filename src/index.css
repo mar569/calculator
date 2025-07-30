@@ -52,3 +52,54 @@ body {
 .animate-pulse {
   animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+.neumorphism {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 3px 3px 20px #a3b1c6, -3px -3px 20px #ffffff;
+}
+
+.neumorphism-inset {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: inset 3px 3px 20px #a3b1c6, inset -3px -3px 20px #ffffff;
+}
+
+.neumorphism-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 300px;
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px #a3b1c6, -3px -5px 20px #ffffff;
+}
+.neumorphism-button {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px #a3b1c6, -3px -3px 20px #ffffff;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
+.neumorphism-button:hover {
+  box-shadow: inset 3px 3px 20px #a3b1c6, inset -3px -3px 20px #e9e1e1;
+}
+
+.neumorphism-input {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px #a3b1c6, -3px -3px 20px #ffffff;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.8s ease;
+}
+.neumorphism-input:hover {
+  box-shadow: inset 10px 10px 20px #a3b1c6, inset -3px -3px 20px #e9e1e1;
+}

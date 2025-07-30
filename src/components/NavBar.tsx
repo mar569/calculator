@@ -41,7 +41,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className={`sticky top-0 z-50 transition-opacity duration-300`} style={{ opacity, backgroundColor: theme === 'dark' ? 'rgba(31, 41, 55, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}>
+        <header className={`w-full max-w-[1920px] mx-auto sticky top-0 z-50 transition-opacity duration-300 rounded`} style={{ opacity, backgroundColor: theme === 'dark' ? 'rgba(31, 41, 55, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}>
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-24">
                     <button className="md:hidden p-2" onClick={toggleMenu}>

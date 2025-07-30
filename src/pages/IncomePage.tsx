@@ -32,7 +32,7 @@ const IncomePage = memo(() => {
     const savingsCushion = totalIncome - totalPlannedExpenses;
 
     return (
-        <motion.div className="space-y-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="space-y-6 mb-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <h1 className="text-2xl text-gray-500">Управление доходами</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -83,8 +83,8 @@ const IncomePage = memo(() => {
                 <div className="border-b">
                     <h2 className="text-xl font-semibold mb-4">Отложенные расходы</h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="flex flex-col pt-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div className="flex flex-col ">
                         <span className="font-medium">Сумма на аренду:</span>
                         <span className="text-[16px] font-bold text-red-600">{rentCost.toLocaleString()} ₽</span>
                     </div>
