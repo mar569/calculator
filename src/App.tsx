@@ -11,21 +11,21 @@ import Page from './components/Page';
 import { AuthProvider } from './context/AuthProvider';
 import Login from './components/auth/Login';
 import Registration from './components/auth/Registration';
-import ProfilePage from './components/auth/ProfilePage';
+import EmailVerification from './components/auth/EmailVerification';
 import { useAuth } from './context/AuthContext';
 
 function AppRoutes() {
   const { currentUser, loading } = useAuth();
 
   if (loading) {
-    return <div>Загрузка...</div>; // Индикатор загрузки
+    return <div>Загрузка...</div>;
   }
 
   return (
     <Routes>
       <Route path="/register" element={<Registration />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/profile" element={currentUser ? <ProfilePage /> : <Navigate to="/register" replace />} />
+      <Route path="/email-verification" element={<EmailVerification />} /> {/* Новый маршрут */}
       <Route path="/" element={currentUser ? <DashboardPage /> : <Navigate to="/register" replace />} />
       <Route path="/finance" element={currentUser ? <FinancePage /> : <Navigate to="/register" replace />} />
       <Route path="/income" element={currentUser ? <IncomePage /> : <Navigate to="/register" replace />} />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { toast } from 'react-toastify';
 import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
@@ -25,6 +25,7 @@ export default function Registration() {
                 setLoading(false);
                 return;
             }
+
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             await sendEmailVerification(userCredential.user);
 
@@ -35,13 +36,12 @@ export default function Registration() {
                 isVerified: false
             });
 
-
             await setDoc(doc(db, 'stats', 'users'), {
                 count: userCount + 1
             }, { merge: true });
 
             toast.success('Регистрация успешна! Проверьте почту для подтверждения');
-            navigate('/profile');
+            navigate('/email-verification');
         } catch (error) {
             toast.error('Ошибка регистрации: ' + (error as Error).message);
             setLoading(false);
