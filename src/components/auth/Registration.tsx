@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { sendEmailVerification, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { toast } from 'react-toastify';
-import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 export default function Registration() {
@@ -17,17 +17,8 @@ export default function Registration() {
         setLoading(true);
 
         try {
-            const usersSnapshot = await getDoc(doc(db, 'stats', 'users'));
-            const userCount = usersSnapshot.exists() ? usersSnapshot.data().count : 0;
-
-            if (userCount >= 2) {
-                toast.error('Достигнуто максимальное количество администраторов');
-                setLoading(false);
-                return;
-            }
-
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            await sendEmailVerification(userCredential.user);
+            await sendEmailVerification(userCredential.user); // Отправка письма для подтверждения
 
             await setDoc(doc(db, 'users', userCredential.user.uid), {
                 name,
@@ -36,12 +27,8 @@ export default function Registration() {
                 isVerified: false
             });
 
-            await setDoc(doc(db, 'stats', 'users'), {
-                count: userCount + 1
-            }, { merge: true });
-
             toast.success('Регистрация успешна! Проверьте почту для подтверждения');
-            navigate('/email-verification');
+            navigate('/email-verification'); // Перенаправление на страницу проверки электронной почты
         } catch (error) {
             toast.error('Ошибка регистрации: ' + (error as Error).message);
             setLoading(false);
