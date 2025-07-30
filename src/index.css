@@ -99,7 +99,7 @@ body {
   box-shadow: 10px 10px 20px #a3b1c6, -3px -3px 20px #ffffff;
   color: black;
   padding: 10px 20px;
-  border: 1px solid #a3b1c6;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }

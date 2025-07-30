@@ -65,7 +65,7 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="neumorphism neumorphism-input w-full" // Убедитесь, что ширина 100%
+                            className="neumorphism neumorphism-input w-full"
                         />
                     </div>
                     <div className="flex items-center">
