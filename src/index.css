@@ -54,13 +54,13 @@ body {
 }
 
 .neumorphism {
-  background: #e0e5ec;
+  background: #eaecef;
   border-radius: 20px;
   box-shadow: 3px 3px 20px #a3b1c6, -3px -3px 20px #ffffff;
 }
 
 .neumorphism-inset {
-  background: #e0e5ec;
+  background: #eaecef;
   border-radius: 20px;
   box-shadow: inset 3px 3px 20px #a3b1c6, inset -3px -3px 20px #ffffff;
 }
@@ -72,17 +72,17 @@ body {
   align-items: center;
   padding: 30px;
   width: 300px;
-  background: #e0e5ec;
+  background: #eaecf0;
   border-radius: 20px;
-  box-shadow: 5px 5px 20px #a3b1c6, -3px -5px 20px #ffffff;
+  box-shadow: 6px 6px 20px #a3b1c6, -6px -6px 20px #ffffff;
 }
 .neumorphism-button {
-  background: #e0e5ec;
+  background: #eaecf0;
   border-radius: 20px;
   box-shadow: 10px 10px 20px #a3b1c6, -3px -3px 20px #ffffff;
   color: black;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #a3b1c6;
   cursor: pointer;
   transition: all 0.8s ease;
 }
@@ -91,12 +91,12 @@ body {
 }
 
 .neumorphism-input {
-  background: #e0e5ec;
+  background: #eaecf0;
   border-radius: 20px;
   box-shadow: 10px 10px 20px #a3b1c6, -3px -3px 20px #ffffff;
   color: black;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #a3b1c6;
   cursor: pointer;
   transition: all 0.8s ease;
 }

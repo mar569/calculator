@@ -1,4 +1,4 @@
-// src/components/auth/Login.tsx
+
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
@@ -26,7 +26,6 @@ export default function Login() {
             await signInWithEmailAndPassword(auth, email, password);
             toast.success('Вход выполнен успешно');
 
-            // Приветствие в зависимости от логина
             if (email === 'efimin01@icloud.com') {
                 toast.info('Привет, Кирилл!');
             } else if (email === 'alinkaovsefimina@bk.ru') {
@@ -57,7 +56,7 @@ export default function Login() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full p-2 border rounded neumorphism neumorphism-input"
+                            className="neumorphism neumorphism-input"
                         />
                     </div>
                     <div>
@@ -67,7 +66,7 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full p-2 border rounded neumorphism neumorphism-input"
+                            className=" rounded neumorphism neumorphism-input"
                         />
                     </div>
                     <div className="flex items-center">
