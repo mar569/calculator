@@ -80,7 +80,6 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">Сумма</label>
                     <input
@@ -93,8 +92,7 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                                 message: 'Сумма должна быть больше 0'
                             }
                         })}
-                        className={`w-full p-2 border ${errors.amount ? 'border-red-500' : 'border-gray-300'
-                            } rounded-md`}
+                        className={`w-full p-2 border ${errors.amount ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                         placeholder="0.00"
                     />
                     {errors.amount && (
@@ -102,18 +100,14 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                     )}
                 </div>
 
-
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Описание
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Описание</label>
                     <input
                         type="text"
                         {...register('description', {
                             required: 'Описание обязательно'
                         })}
-                        className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'
-                            } rounded-md`}
+                        className={`w-full p-2 border ${errors.description ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                         placeholder="Детали транзакции"
                     />
                     {errors.description && (
@@ -121,11 +115,8 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                     )}
                 </div>
 
-
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Категория
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Категория</label>
                     <select
                         {...register('category')}
                         className="w-full p-2 border border-gray-300 rounded-md"
@@ -134,7 +125,6 @@ const FinanceCalculator: React.FC<FinanceCalculatorProps> = ({
                         <option value="expense">Расход</option>
                     </select>
                 </div>
-
 
                 <div className="flex space-x-4">
                     <button
