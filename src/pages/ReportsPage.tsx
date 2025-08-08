@@ -177,7 +177,7 @@ const ReportsPage = memo(() => {
                 </div>
             </div>
             <div className={`bg-white rounded-lg shadow-md p-6 ${theme === 'dark' ? THEME_COLORS.dark.background : THEME_COLORS.light.background}`}>
-                <h2 className="text-[18px] font-semibold mb-2">Общий доход за весь период:</h2>
+                <h2 className="text-[18px] font-semibold mb-2">Чистый доход за весь период:</h2>
                 <p className="text-lg font-bold text-green-600 mb-4 pl-4">{totalIncome.toLocaleString()} ₽</p>
                 <h2 className="text-[18px] font-semibold mb-2">Общие расходы за весь период:</h2>
                 <p className="text-lg font-bold text-red-500 pl-4">{totalExpense.toLocaleString()} ₽</p>
